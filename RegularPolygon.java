@@ -74,4 +74,9 @@ public class RegularPolygon {
     public double getCentralAngle(){
         return (double) 360 / numSides;
     }
+
+    @Override
+    public boolean equals(Object o){
+        return numSides == ((RegularPolygon) o).numSides && length == ((RegularPolygon) o).length;
+    }
 }
