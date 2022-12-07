@@ -14,6 +14,13 @@ public class PolygonDriver {
             polygons.add(new RegularPolygon(rng.nextInt(5)+3, rng.nextInt(20)+1, rng.nextInt(20)-10, rng.nextInt(20)-10));
         }
 
+        for(int i = 0; i < polygons.size(); i++){
+            System.out.println("P"+(i+1)+" number sides: "+polygons.get(i).getNumSides());
+            System.out.println("P"+(i+1)+" side lengths: "+polygons.get(i).getLength());
+            System.out.println("P"+(i+1)+" x: "+polygons.get(i).getX());
+            System.out.println("P"+(i+1)+" y: "+polygons.get(i).getY());
+        }
+
         //polygons.get(0).setNumSides(1);
         //polygons.get(0).setLength(-4);
         for(int i = 0; i < polygons.size(); i++){
