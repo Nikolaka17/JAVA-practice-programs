@@ -62,4 +62,16 @@ public class RegularPolygon {
     public int getY(){
         return y;
     }
+
+    public int getPerimeter(){
+        return numSides * length;
+    }
+
+    public double getArea(){
+        return (double)(numSides * length * length) / (4 * Math.tan(Math.PI / numSides)); 
+    }
+
+    public double getCentralAngle(){
+        return (double) 360 / numSides;
+    }
 }
