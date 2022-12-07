@@ -46,4 +46,20 @@ public class RegularPolygon {
     public void setY(int y){
         this.y = y;
     }
+
+    public int getNumSides(){
+        return numSides;
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
 }
