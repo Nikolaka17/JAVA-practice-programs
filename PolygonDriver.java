@@ -21,6 +21,12 @@ public class PolygonDriver {
             System.out.println("P"+(i+1)+" y: "+polygons.get(i).getY());
         }
 
+        for(int i = 0; i < polygons.size(); i++){
+            System.out.println("P"+(i+1)+" perimeter: "+polygons.get(i).getPerimeter());
+            System.out.println("P"+(i+1)+" area: "+polygons.get(i).getArea());
+            System.out.println("P"+(i+1)+" angle: "+polygons.get(i).getCentralAngle());
+        }
+
         //polygons.get(0).setNumSides(1);
         //polygons.get(0).setLength(-4);
         for(int i = 0; i < polygons.size(); i++){
