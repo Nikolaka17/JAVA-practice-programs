@@ -44,10 +44,18 @@ public class BinaryTree{
     }
 
     public Node min(){
-
+        Node current = root;
+        while(current.left != null){
+            current = current.left;
+        }
+        return current;
     }
 
     public Node max(){
-
+        Node current = root;
+        while(current.right != null){
+            current = current.right;
+        }
+        return current;
     }
 }
