@@ -108,4 +108,28 @@ public class BinaryTree{
         }
         return end;
     }
+
+    public Node[] postorder(){
+        return postorder(root);
+    }
+
+    public static Node[] postorder(Node n){
+        ArrayList<Node> result = new ArrayList<Node>();
+        if(n.left != null){
+            for(Node i: preorder(n.left)){
+                result.add(i);
+            }
+        }
+        if(n.right != null){
+            for(Node i: preorder(n.right)){
+                result.add(i);
+            }
+        }
+        result.add(n);
+        Node[] end = new Node[result.size()];
+        for(int i = 0; i < result.size(); i++){
+            end[i] = result.get(i);
+        }
+        return end;
+    }
 }
