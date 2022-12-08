@@ -15,4 +15,9 @@ public class Node implements Comparable<Node>{
     public int compareTo(Node n){
         return data.compareTo(n.getData());
     }
+
+    @Override
+    public boolean equals(Object o){
+        return data.equals(((Node) o).data);
+    }
 }
