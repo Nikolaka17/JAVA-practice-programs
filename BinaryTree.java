@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 
+/**
+ * Class that represents a full binary tree
+ * @see Node
+ */
 public class BinaryTree{
     private Node root = null;
 
+    /**
+     * Method to add data to the binary tree
+     * @param newData The data to insert into the binary tree
+     */
     public void insert(String newData){
         Node newNode = new Node(newData);
         if(root == null){
@@ -30,6 +38,11 @@ public class BinaryTree{
         }
     }
 
+    /**
+     * Method to test if a node is in the binary tree
+     * @param n The node to check
+     * @return A boolean representing if the node is in the binary tree
+     */
     public boolean in(Node n){
         Node current = root;
         while(!current.equals(n)){
@@ -45,6 +58,10 @@ public class BinaryTree{
         return true;
     }
 
+    /**
+     * A method that finds the lowest value node in the tree
+     * @return The node that has the lowest value
+     */
     public Node min(){
         Node current = root;
         while(current.left != null){
@@ -53,6 +70,10 @@ public class BinaryTree{
         return current;
     }
 
+    /**
+     * A method that finds the highest value node in the tree
+     * @return The node that has the highest value
+     */
     public Node max(){
         Node current = root;
         while(current.right != null){
@@ -61,10 +82,19 @@ public class BinaryTree{
         return current;
     }
 
+    /**
+     * A method that preordered traverses the tree
+     * @return The array of all the data in the tree preordered
+     */
     public Node[] preorder(){
         return preorder(root);
     }
 
+    /**
+     * A method that preordered traverses a subtree
+     * @param n The subtree to return the data of
+     * @return The array of all the data in the sub-tree
+     */
     public static Node[] preorder(Node n){
         ArrayList<Node> result = new ArrayList<Node>();
         result.add(n);
@@ -85,10 +115,19 @@ public class BinaryTree{
         return end;
     }
 
+    /**
+     * A method that traverses the tree in order
+     * @return The array of all the data in the tree
+     */
     public Node[] inorder(){
         return inorder(root);
     }
 
+    /**
+     * A method that traverses a subtree in order
+     * @param n The sub-tree to traverse
+     * @return The array of all the data in the subtree
+     */
     public static Node[] inorder(Node n){
         ArrayList<Node> result = new ArrayList<Node>();
         if(n.left != null){
@@ -109,10 +148,19 @@ public class BinaryTree{
         return end;
     }
 
+    /**
+     * A method that postorder traverses the tree
+     * @return The array of all the data in the tree
+     */
     public Node[] postorder(){
         return postorder(root);
     }
 
+    /**
+     * A method that postorder traverses a subtree
+     * @param n The subtree to traverse
+     * @return The array of all the data in the subtree
+     */
     public static Node[] postorder(Node n){
         ArrayList<Node> result = new ArrayList<Node>();
         if(n.left != null){
