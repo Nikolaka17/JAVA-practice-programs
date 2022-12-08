@@ -84,4 +84,28 @@ public class BinaryTree{
         }
         return end;
     }
+
+    public Node[] inorder(){
+        return inorder(root);
+    }
+
+    public static Node[] inorder(Node n){
+        ArrayList<Node> result = new ArrayList<Node>();
+        if(n.left != null){
+            for(Node i: preorder(n.left)){
+                result.add(i);
+            }
+        }
+        result.add(n);
+        if(n.right != null){
+            for(Node i: preorder(n.right)){
+                result.add(i);
+            }
+        }
+        Node[] end = new Node[result.size()];
+        for(int i = 0; i < result.size(); i++){
+            end[i] = result.get(i);
+        }
+        return end;
+    }
 }
