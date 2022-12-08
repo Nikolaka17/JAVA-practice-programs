@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BinaryTree{
     private Node root = null;
 
@@ -57,5 +59,29 @@ public class BinaryTree{
             current = current.right;
         }
         return current;
+    }
+
+    public Node[] preorder(){
+        return preorder(root);
+    }
+
+    public static Node[] preorder(Node n){
+        ArrayList<Node> result = new ArrayList<Node>();
+        result.add(n);
+        if(n.left != null){
+            for(Node i: preorder(n.left)){
+                result.add(i);
+            }
+        }
+        if(n.right != null){
+            for(Node i: preorder(n.right)){
+                result.add(i);
+            }
+        }
+        Node[] end = new Node[result.size()];
+        for(int i = 0; i < result.size(); i++){
+            end[i] = result.get(i);
+        }
+        return end;
     }
 }
