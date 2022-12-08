@@ -18,6 +18,6 @@ public class Node implements Comparable<Node>{
 
     @Override
     public boolean equals(Object o){
-        return data.equals(((Node) o).getData);
+        return data.equals(((Node) o).getData());
     }
 }
