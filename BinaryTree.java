@@ -28,8 +28,19 @@ public class BinaryTree{
         }
     }
 
-    public Node search(){
+    public boolean in(Node n){
         Node current = root;
+        while(!current.equals(n)){
+            if(n.compareTo(current) <= 0){
+                current = current.left;
+            }else{
+                current = current.right;
+            }
+            if(current == null){
+                return false;
+            }
+        }
+        return true;
     }
 
     public Node min(){
