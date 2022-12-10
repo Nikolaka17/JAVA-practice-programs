@@ -44,6 +44,9 @@ public class BinaryTree{
      * @return A boolean representing if the node is in the binary tree
      */
     public boolean in(Node n){
+        if(root == null){
+            return false;
+        }
         Node current = root;
         while(!current.equals(n)){
             if(n.compareTo(current) <= 0){
@@ -63,6 +66,9 @@ public class BinaryTree{
      * @return The node that has the lowest value
      */
     public Node min(){
+        if(root == null){
+            return null;
+        }
         Node current = root;
         while(current.left != null){
             current = current.left;
@@ -75,6 +81,9 @@ public class BinaryTree{
      * @return The node that has the highest value
      */
     public Node max(){
+        if(root == null){
+            return null;
+        }
         Node current = root;
         while(current.right != null){
             current = current.right;
@@ -96,6 +105,9 @@ public class BinaryTree{
      * @return The array of all the data in the sub-tree
      */
     public static Node[] preorder(Node n){
+        if(n == null){
+            return null;
+        }
         ArrayList<Node> result = new ArrayList<Node>();
         result.add(n);
         if(n.left != null){
@@ -129,6 +141,9 @@ public class BinaryTree{
      * @return The array of all the data in the subtree
      */
     public static Node[] inorder(Node n){
+        if(n == null){
+            return null;
+        }
         ArrayList<Node> result = new ArrayList<Node>();
         if(n.left != null){
             for(Node i: preorder(n.left)){
@@ -162,6 +177,9 @@ public class BinaryTree{
      * @return The array of all the data in the subtree
      */
     public static Node[] postorder(Node n){
+        if(n == null){
+            return null;
+        }
         ArrayList<Node> result = new ArrayList<Node>();
         if(n.left != null){
             for(Node i: preorder(n.left)){
