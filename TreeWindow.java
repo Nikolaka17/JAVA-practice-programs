@@ -29,7 +29,7 @@ public class TreeWindow{
             @Override
             public void actionPerformed(ActionEvent ae){
                 if(addField.getText() != null && !addField.getText().equals("")){
-                    tree.insert(addField.getText());
+                    tree.add(addField.getText());
                     JOptionPane.showMessageDialog(window, addField.getText() + " has been added to the tree", "Item added", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(window, "No value given", "Error", JOptionPane.ERROR_MESSAGE);
@@ -55,13 +55,13 @@ public class TreeWindow{
         minButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae){
-                JOptionPane.showMessageDialog(window, tree.min() + " has the lowest value of the tree", "Min", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(window, tree.min().getData() + " has the lowest value of the tree", "Min", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         maxButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae){
-                JOptionPane.showMessageDialog(window, tree.max() + " has the highest value of the tree", "Max", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(window, tree.max().getData() + " has the highest value of the tree", "Max", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         inorderButton.addActionListener(new ActionListener(){
