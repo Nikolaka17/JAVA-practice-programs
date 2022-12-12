@@ -118,4 +118,9 @@ public class Card {
         }
         return valueOf();
     }
+
+    @Override
+    public boolean equals(Object o){
+        return suit == ((Card) o).suit && rank.equals(((Card) o).rank);
+    }
 }
