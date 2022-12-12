@@ -50,5 +50,9 @@ public class CardDriver {
             cards.get(i).setFront(null);
             System.out.println("C"+(i+1)+" has been mutated");
         }
+
+        for(int i = 0; i < cards.size(); i++){
+            System.out.println("C"+(i+1)+": "+cards.get(i));
+        }
     }
 }
