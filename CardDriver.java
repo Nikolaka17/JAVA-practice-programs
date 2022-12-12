@@ -12,6 +12,10 @@ public class CardDriver {
         //cards.add(new Card(Card.Suit.DIAMOND, "1"));
         cards.add(new Card(Card.Suit.SPADE, "A"));
         cards.add(new Card(Card.Suit.CLUB, "3", new ImageIcon(), new ImageIcon()));
+        cards.add(new Card(Card.Suit.CLUB, "3"));
+
+        System.out.println("C1 == C2: "+ cards.get(1).equals(cards.get(0)));
+        System.out.println("C3 == C4: "+ cards.get(2).equals(cards.get(3)));
 
         for(int i = 0; i < cards.size(); i++){
             System.out.println("C"+(i+1)+" has a suit of: " + cards.get(i).getSuit());
