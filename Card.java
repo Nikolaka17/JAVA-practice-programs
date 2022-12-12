@@ -123,4 +123,46 @@ public class Card {
     public boolean equals(Object o){
         return suit == ((Card) o).suit && rank.equals(((Card) o).rank);
     }
+
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        switch(rank){
+            case "Joker":
+                return "Joker";
+            case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9": case "10":
+                result = result.append(rank);
+                break;
+            case "J":
+                result = result.append("Jack");
+                break;
+            case "Q":
+                result = result.append("Queen");
+                break;
+            case "K":
+                result = result.append("King");
+                break;
+            case "A":
+                result = result.append("Ace");
+                break;
+        }
+        result = result.append(" of ");
+        switch(suit){
+            case SPADE:
+                result = result.append("spades");
+                break;
+            case CLUB:
+                result = result.append("clubs");
+                break;
+            case DIAMOND:
+                result = result.append("diamonds");
+                break;
+            case HEART:
+                result =result.append("hearts");
+                break;
+            case NONE:
+                break;
+        }
+        return result.toString();
+    }
 }
