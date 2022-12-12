@@ -8,34 +8,32 @@ public class BinaryTree{
     private Node root = null;
 
     /**
-     * Method to add data to the binary tree
-     * @param newData The data to insert into the binary tree
+     * Method to add an item to the tree
+     * @param value The value to add the the tree
      */
-    public void insert(String newData){
-        Node newNode = new Node(newData);
-        if(root == null){
-            root = newNode;
-        }else{
-            Node parent = null;
-            Node current = newNode;
-            boolean searching = true;
-            do{
-                parent = current;
-                if(newNode.compareTo(current) <= 0){
-                    current = current.left;
-                    if(current == null){
-                        parent.left = newNode;
-                        searching = false;
-                    }
-                }else{
-                    current = current.right;
-                    if(current == null){
-                        parent.right = newNode;
-                        searching = false;
-                    }
-                }
-            }while(searching);
+    public void add(String value){
+        root = recursiveAdd(root, value);
+    }
+
+    /**
+     * Method to create a new root when adding to a tree
+     * @param current The node to add to
+     * @param value The value to add
+     * @return A node with value added
+     */
+    private Node recursiveAdd(Node current, String value){
+        if(current == null){
+            return new Node(value);
         }
+        if((new Node(value)).compareTo(current) < 0){
+            current.left = recursiveAdd(current.left, value);
+        }else if((new Node(value)).compareTo(current) > 0){
+            current.right = recursiveAdd(current.right, value);
+        }else{
+            return current;
+        }
+
+        return current;
     }
 
     /**
