@@ -21,6 +21,11 @@ public class CardDriver {
         }
 
         for(int i = 0; i < cards.size(); i++){
+            System.out.println("C"+(i+1)+ " has a value of: " + cards.get(i).valueOf());
+            System.out.println("C"+(i+1)+ " has a rummy value of: "+cards.get(i).valueOf("RUMMY"));
+        }
+
+        for(int i = 0; i < cards.size(); i++){
             int selectedSuit = rng.nextInt(4);
             switch(selectedSuit){
                 case 0:
