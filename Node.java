@@ -30,7 +30,24 @@ public class Node implements Comparable<Node>{
      */
     @Override
     public int compareTo(Node n){
-        return data.compareTo(n.getData());
+        int l1 = data.length();
+        int l2 = n.getData().length();
+        int lmin = Math.min(l1, l2);
+
+        for(int i = 0; i < lmin; i++){
+            int char1 = (int) data.charAt(i);
+            int char2 = (int) n.getData().charAt(i);
+
+            if(char1 != char2){
+                return char1 - char2;
+            }
+        }
+
+        if(l1 != l2){
+            return l1 - l2;
+        }
+
+        return 0;
     }
 
     /**
