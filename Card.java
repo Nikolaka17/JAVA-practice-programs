@@ -31,7 +31,7 @@ public class Card {
         if(!r.equals("Joker") && s == Suit.NONE){
             throw new IllegalArgumentException("Joker is the only rank that can be of suit none");
         }
-        if(isValidRank(r)){
+        if(!isValidRank(r)){
             throw new IllegalArgumentException("Invalid rank. Valid ranks are 2-10, J, Q, K, A, Joker");
         }
         suit = s;
@@ -63,5 +63,30 @@ public class Card {
 
     public ImageIcon getBack(){
         return back;
+    }
+
+    public void setSuit(Suit s)throws IllegalArgumentException{
+        if(s == Suit.NONE && !rank.equals("Joker")){
+            throw new IllegalArgumentException("Joker is the only card that can be suit NONE, to set suit to none change the rank to joker");
+        }
+        suit = s;
+    }
+
+    public void setRank(String r)throws IllegalArgumentException{
+        if(!isValidRank(r)){
+            throw new IllegalArgumentException("Invalid rank. Valid ranks are 2-10, J, Q, K, A, Joker");
+        }
+        if(r.equals("Joker")){
+            suit = Suit.NONE;
+        }
+        rank = r;
+    }
+
+    public void setBack(ImageIcon b){
+        back = b;
+    }
+
+    public void setFront(ImageIcon f){
+        front = f;
     }
 }
