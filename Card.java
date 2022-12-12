@@ -89,4 +89,33 @@ public class Card {
     public void setFront(ImageIcon f){
         front = f;
     }
+
+    public int valueOf(){
+        switch(rank){
+            case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9": case "10":
+                return Integer.parseInt(rank);
+            case "J": case "Q": case "K":
+                return 10;
+            case "A":
+                return 11;
+            default:
+                return 0;
+        }
+    }
+
+    public int valueOf(String m){
+        if(m.equals("RUMMY")){
+            switch(rank){
+                case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9":
+                    return 5;
+                case "10": case "J": case "Q": case "K":
+                    return 10;
+                case "A":
+                    return 15;
+                default:
+                    return 0;
+            }
+        }
+        return valueOf();
+    }
 }
