@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class RomanNumeral {
     private int value;
     public final static RomanNumeral MIN_NUMERAL = new RomanNumeral();
@@ -35,25 +33,53 @@ public class RomanNumeral {
         return value;
     }
 
+    public RomanNumeral add(RomanNumeral n)throws ArithmeticException{
+        if(value + n.value > 4000){
+            throw new ArithmeticException("Result is larger than what can be stored");
+        }
+        return new RomanNumeral(value + n.value);
+    }
+
+    public RomanNumeral subtract(RomanNumeral n)throws ArithmeticException{
+        if(value - n.value < 1){
+            throw new ArithmeticException("Result is smaller than what can be stored");
+        }
+        return new RomanNumeral(value + n.value);
+    }
+
+    public RomanNumeral multiply(RomanNumeral n)throws ArithmeticException{
+        if(value * n.value > 4000){
+            throw new ArithmeticException("Result is larger than what can be stored");
+        }
+        return new RomanNumeral(value * n.value);
+    }
+
+    public RomanNumeral divide(RomanNumeral n){
+        return new RomanNumeral(value / n.value);
+    }
+
+    public RomanNumeral pow(int n)throws ArithmeticException{
+        if(Math.pow(value, n) > 4000){
+            throw new ArithmeticException("Result is larger than what can be stored");
+        }
+        return new RomanNumeral((int) Math.pow(value, n));
+    }
+
+    public int mod(int n){
+        return value % n;
+    }
+
     private int toInt(String s)throws NumberFormatException, IllegalArgumentException{
-        HashMap<Character, Integer> conversion = new HashMap<Character, Integer>();
-        conversion.put('I', 1);
-        conversion.put('V', 5);
-        conversion.put('X', 10);
-        conversion.put('L', 50);
-        conversion.put('C', 100);
-        conversion.put('D', 500);
-        conversion.put('M', 1000);
         int total = 0;
         for(int i = s.length() - 1; i >= 0; i--){
             if(i != s.length() - 1){
-                if(conversion.get(Character.toUpperCase(s.charAt(i))) < conversion.get(Character.toUpperCase(s.charAt(i+1)))){
-                    total -= conversion.get(Character.toUpperCase(s.charAt(i)));
+                if(valueOf(s.charAt(i)) < valueOf(s.charAt(i+1))){
+                    total -= valueOf(s.charAt(i));
                 }else{
-                    total += conversion.get(Character.toUpperCase(s.charAt(i)));
+                    total += valueOf(s.charAt(i));
                 }
             }else{
-                total += conversion.get(Character.toUpperCase(s.charAt(i)));
+                total += valueOf(s.charAt(i));
             }
         }
         if(!(new RomanNumeral(total)).toString().equals(s.toUpperCase())){
@@ -63,6 +89,27 @@ public class RomanNumeral {
             throw new IllegalArgumentException("Can only store values between 1 and 4000");
         }
         return total;
+    }
+
+    private int valueOf(char c)throws NumberFormatException{
+        switch(Character.toUpperCase(c)){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                throw new NumberFormatException("Invalid roman numeral");
+        }
     }
 
     @Override
