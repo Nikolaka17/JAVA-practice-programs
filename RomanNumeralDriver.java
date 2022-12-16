@@ -4,6 +4,7 @@ import java.util.Random;
 public class RomanNumeralDriver {
     
     public static void main(String[] args){
+        Random rng = new Random();
         ArrayList<RomanNumeral> numerals = new ArrayList<RomanNumeral>();
         numerals.add(new RomanNumeral());
         numerals.add(new RomanNumeral(632));
@@ -14,5 +15,17 @@ public class RomanNumeralDriver {
         numerals.add(new RomanNumeral("CDIX"));
         numerals.add(RomanNumeral.MIN_NUMERAL);
         numerals.add(RomanNumeral.MAX_NUMERAL);
+
+        //Accessor tests
+        for(int i = 0; i < numerals.size(); i++){
+            System.out.println("N"+(i+1)+" has a value of: " + numerals.get(i).getValue());
+        }
+
+        //Mutator tests
+        numerals.get(1).setValue("IX");
+        for(int i = 0; i < numerals.size(); i++){
+            numerals.get(i).setValue(rng.nextInt(4000)+1);
+            System.out.println("N"+(i+1)+" has been mutated");
+        }
     }
 }
