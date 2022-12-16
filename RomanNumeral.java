@@ -16,11 +16,26 @@ public class RomanNumeral {
         value = v;
     }
 
-    public RomanNumeral(String v)throws NumberFormatException{
+    public RomanNumeral(String v)throws NumberFormatException, IllegalArgumentException{
         value = toInt(v); 
     }
 
-    private int toInt(String s)throws NumberFormatException{
+    public void setValue(int v)throws IllegalArgumentException{
+        if(v < 1 || v > 4000){
+            throw new IllegalArgumentException("Can only store values between 1 and 4000");
+        }
+        value = v;
+    }
+
+    public void setValue(String v)throws NumberFormatException, IllegalArgumentException{
+        value = toInt(v);
+    }
+
+    public int getValue(){
+        return value;
+    }
+
+    private int toInt(String s)throws NumberFormatException, IllegalArgumentException{
         HashMap<Character, Integer> conversion = new HashMap<Character, Integer>();
         conversion.put('I', 1);
         conversion.put('V', 5);
@@ -43,6 +58,9 @@ public class RomanNumeral {
         }
         if(!(new RomanNumeral(total)).toString().equals(s.toUpperCase())){
             throw new NumberFormatException("Invalid roman numeral");
+        }
+        if(total < 1 || total > 4000){
+            throw new IllegalArgumentException("Can only store values between 1 and 4000");
         }
         return total;
     }
