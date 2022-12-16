@@ -160,4 +160,9 @@ public class RomanNumeral {
         }while(curValue > 0);
         return result.toString();
     }
+
+    @Override
+    public boolean equals(Object o){
+        return value == ((RomanNumeral) o).value;
+    }
 }
