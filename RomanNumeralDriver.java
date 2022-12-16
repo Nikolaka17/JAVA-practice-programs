@@ -20,6 +20,11 @@ public class RomanNumeralDriver {
         System.out.println("C3 == C4: "+numerals.get(2).equals(numerals.get(3)));
         System.out.println("C1 == C5: "+numerals.get(0).equals(numerals.get(4)));
 
+        //Comparison tests
+        System.out.println("C3 ? C4: "+numerals.get(2).compareTo(numerals.get(3)));
+        System.out.println("C1 ? C5: "+numerals.get(0).compareTo(numerals.get(4)));
+        System.out.println("C6 ? C5: "+numerals.get(5).compareTo(numerals.get(4)));
+
         //Accessor tests
         for(int i = 0; i < numerals.size(); i++){
             System.out.println("N"+(i+1)+" has a value of: " + numerals.get(i).getValue());
