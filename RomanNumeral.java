@@ -22,7 +22,7 @@ public class RomanNumeral {
 
     private int toInt(String s)throws NumberFormatException{
         HashMap<Character, Integer> conversion = new HashMap<Character, Integer>();
-        conversion.put('I', 5);
+        conversion.put('I', 1);
         conversion.put('V', 5);
         conversion.put('X', 10);
         conversion.put('L', 50);
@@ -32,7 +32,7 @@ public class RomanNumeral {
         int total = 0;
         for(int i = s.length() - 1; i >= 0; i--){
             if(i != s.length() - 1){
-                if(conversion.get(Character.toUpperCase(s.charAt(i))) < conversion.get(Character.toUpperCase(s.charAt(i)))){
+                if(conversion.get(Character.toUpperCase(s.charAt(i))) < conversion.get(Character.toUpperCase(s.charAt(i+1)))){
                     total -= conversion.get(Character.toUpperCase(s.charAt(i)));
                 }else{
                     total += conversion.get(Character.toUpperCase(s.charAt(i)));
