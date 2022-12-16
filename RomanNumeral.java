@@ -1,4 +1,4 @@
-public class RomanNumeral {
+public class RomanNumeral implements Comparable{
     private int value;
     public final static RomanNumeral MIN_NUMERAL = new RomanNumeral();
     public final static RomanNumeral MAX_NUMERAL = new RomanNumeral(4000);
@@ -164,5 +164,15 @@ public class RomanNumeral {
     @Override
     public boolean equals(Object o){
         return value == ((RomanNumeral) o).value;
+    }
+
+    @Override
+    public int compareTo(Object o){
+        if(value < ((RomanNumeral) o).value){
+            return -1;
+        }else if(value > ((RomanNumeral) o).value){
+            return 1;
+        }
+        return 0;
     }
 }
