@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SimpleChess {
     public static final char WKING = 'K';
@@ -19,11 +20,99 @@ public class SimpleChess {
     public static void main(String[] args){
         char[][] board = new char[][]{{BROOK, BKNIGHT, BBISHOP, BQUEEN, BKING, BBISHOP, BKNIGHT, BROOK},{BPAWN, BPAWN, BPAWN, BPAWN, BPAWN, BPAWN, BPAWN, BPAWN},{SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE},{SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE},{SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE},{SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE},{WPAWN, WPAWN, WPAWN, WPAWN, WPAWN, WPAWN, WPAWN, WPAWN},{WROOK, WKNIGHT, WBISHOP, WQUEEN, WKING, WBISHOP, WKNIGHT, WROOK}};
         int[][] colors = new int[][]{{2, 2, 2, 2, 2, 2, 2, 2},{2, 2, 2, 2, 2, 2, 2, 2},{0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0},{1, 1, 1, 1, 1, 1, 1, 1},{1, 1, 1, 1, 1, 1, 1, 1}};
+        boolean[][] whiteAttack = new boolean[8][8];
+        boolean[][] blackAttack = new boolean[8][8];
+        generateAttackMap(board, colors, blackAttack, 2);
+        generateAttackMap(board, colors, whiteAttack, 1);
         int player = 1;
         boolean check = false;
+        boolean over = false;
+        Scanner stdin = new Scanner(System.in);
+        boolean validInput = false;
+
+        do{
+            System.out.println((player == 1)?"White":"Black" + " to play");
+            if(check){
+                System.out.println("You are in check");
+            }
+            printBoard(board, player);
+            if(inCheckMate(board, colors, player)){
+                over = true;
+            }else{
+                validInput = false;
+                int x1 = 0;
+                int y1 = 0;
+                int x2 = 0;
+                int y2 = 0;
+                while(!validInput){
+                    while(y1 < 1 || y1 > 8){
+                        while(!stdin.hasNextInt()){
+                            System.out.println("What row is the piece you would like to move? 1-8");
+                        }
+                        y1 = stdin.nextInt();
+                        if(y1 < 1 || y1 > 8){
+                            System.out.println("Invalid choice please try again");
+                        }
+                    }
+                    while(x1 < 1 || x1 > 8){
+                        while(!stdin.hasNextInt()){
+                            System.out.println("What column is the piece you would like to move? 1-8");
+                        }
+                        x1 = stdin.nextInt();
+                        if(x1 < 1 || x1 > 8){
+                            System.out.println("Invalid choice please try again");
+                        }
+                    }
+                    while(y2 < 1 || y2 > 8){
+                        while(!stdin.hasNextInt()){
+                            System.out.println("What row is the position you would like to move it to? 1-8");
+                        }
+                        y2 = stdin.nextInt();
+                        if(y2 < 1 || y2 > 8){
+                            System.out.println("Invalid choice please try again");
+                        }
+                    }
+                    while(x2 < 1 || x2 > 8){
+                        while(!stdin.hasNextInt()){
+                            System.out.println("What column is the position you would like to move it to? 1-8");
+                        }
+                        x2 = stdin.nextInt();
+                        if(x2 < 1 || x2 > 8){
+                            System.out.println("Invalid choice please try again");
+                        }
+                    }
+                    if(isValidMove(board, colors, new Point(x1, y1), new Point(x2, y2), check, (player == 1)?whiteAttack:blackAttack)){
+                        move(board, colors, new Point(x1, y1), new Point(x2, y2));
+                        validInput = true;
+                    }
+                }
+                generateAttackMap(board, colors, whiteAttack, 1);
+                generateAttackMap(board, colors, blackAttack, 2);
+                player = 3 - player;
+                Point kingPos = findKing(board, player);
+                if(player == 1){
+                    check = whiteAttack[kingPos.y][kingPos.x];
+                }else{
+                    check = blackAttack[kingPos.y][kingPos.x];
+                }
+            }
+        }while(!over);
     }
 
-    public void printBoard(char[][] b, char[][] c, int p){
+    public static boolean inCheckMate(char[][] b, int[][] c, int p){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(c[i][j] == p){
+                    if(findMoves(b, c, new Point(j, i)) != null){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void printBoard(char[][] b, int p){
         if(p == 1){
             for(int i = 0; i < 8; i++){
                 for(int j = 0; j < 8; j++){
@@ -40,11 +129,17 @@ public class SimpleChess {
             }
         }
     }
+    public static Point[] findMoves(char[][] board, int[][] colors, Point pos){
+        return findMoves(board, colors, pos, false, null);
+    }
 
-    public Point[] findMoves(char[][] board, int[][] colors, Point pos){
+    public static Point[] findMoves(char[][] board, int[][] colors, Point pos, boolean inCheck, boolean[][] map){
         ArrayList<Point> result = new ArrayList<Point>();
         int tempY = pos.y;
         int tempX = pos.x;
+        char[][] testBoard = board;
+        int[][] testColors = colors;
+        boolean[][] testMap = map;
         switch(Character.toUpperCase(board[pos.y][pos.x])){
             case WPAWN:
                 if(colors[pos.y][pos.x] == 1){
@@ -328,7 +423,16 @@ public class SimpleChess {
                 }
                 break;
         }
-
+        if(inCheck){
+            for(int i = result.size()-1; i >= 0; i--){
+                move(testBoard, testColors, pos, result.get(i));
+                Point king = findKing(testBoard, colors[pos.y][pos.x]);
+                generateAttackMap(testBoard, testColors, testMap, colors[pos.y][pos.x]);
+                if(testMap[king.y][king.x]){
+                    result.remove(i);
+                }
+            }
+        }
         if(result.size() == 0){
             return null;
         }
@@ -339,12 +443,49 @@ public class SimpleChess {
         return end;
     }
 
-    public boolean isValidMove(char[][] board, int[][] colors, Point piece, Point pos){
-        for(Point p: findMoves(board, colors, piece)){
+    public static void move(char[][] board, int[][] colors, Point piece, Point pos){
+        colors[pos.y][pos.x] = colors[piece.y][piece.x];
+        board[pos.y][pos.x] = board[piece.y][piece.x];
+        colors[piece.y][piece.x] = 0;
+        board[piece.y][piece.x] = SPACE;
+    }
+
+    public static boolean isValidMove(char[][] board, int[][] colors, Point piece, Point pos, boolean inCheck, boolean[][] map){
+        for(Point p: findMoves(board, colors, piece, inCheck, map)){
             if(pos.equals(p)){
                 return true;
             }
         }
         return false;
+    }
+
+    public static void generateAttackMap(char[][] b, int[][] c, boolean[][] map, int p){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                map[i][j] = false;
+            }
+        }
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(c[i][j] == p){
+                    for(Point pos: findMoves(b, c, new Point(j, i))){
+                        map[pos.y][pos.x] = true;
+                    }
+                }
+            }
+        }
+    }
+
+    public static Point findKing(char[][] b, int p){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(p == 1 && b[i][j] == WKING){
+                    return new Point(j, i);
+                }else if(p == 2 && b[i][j] == BKING){
+                    return new Point(j, i);
+                }
+            }
+        }
+        return null;
     }
 }
