@@ -125,6 +125,9 @@ public class SimpleChess {
                 tempX = pos.x + 1;
                 while(tempY >= 0 && tempX < 8 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY--;
                     tempX++;
                 }
@@ -133,6 +136,9 @@ public class SimpleChess {
                 tempX = pos.x - 1;
                 while(tempY >= 0 && tempX >= 0 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY--;
                     tempX--;
                 }
@@ -141,6 +147,9 @@ public class SimpleChess {
                 tempX = pos.x - 1;
                 while(tempY < 8 && tempX >= 0 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY++;
                     tempX--;
                 }
@@ -149,6 +158,9 @@ public class SimpleChess {
                 tempX = pos.x + 1;
                 while(tempY < 8 && tempX < 8 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY++;
                     tempX++;
                 }
@@ -158,24 +170,36 @@ public class SimpleChess {
                 tempY = pos.y + 1;
                 while(tempY < 8 && colors[tempY][pos.x] != colors[pos.y][pos.x]){
                     result.add(new Point(pos.x, tempY));
+                    if(colors[tempY][pos.x] != 0){
+                        break;
+                    }
                     tempY++;
                 }
                 //North tests
                 tempY = pos.y - 1;
                 while(tempY >= 0 && colors[tempY][pos.x] != colors[pos.y][pos.x]){
                     result.add(new Point(pos.x, tempY));
+                    if(colors[tempY][pos.x] != 0){
+                        break;
+                    }
                     tempY--;
                 }
                 //West tests
                 tempX = pos.x - 1;
                 while(tempX >= 0 && colors[pos.y][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, pos.y));
+                    if(colors[pos.y][tempX] != 0){
+                        break;
+                    }
                     tempX--;
                 }
                 //East tests
                 tempX = pos.x + 1;
                 while(tempX < 8 && colors[pos.y][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, pos.y));
+                    if(colors[pos.y][tempX] != 0){
+                        break;
+                    }
                     tempX++;
                 }
                 break;
@@ -184,24 +208,36 @@ public class SimpleChess {
                 tempY = pos.y + 1;
                 while(tempY < 8 && colors[tempY][pos.x] != colors[pos.y][pos.x]){
                     result.add(new Point(pos.x, tempY));
+                    if(colors[tempY][pos.x] != 0){
+                        break;
+                    }
                     tempY++;
                 }
                 //North tests
                 tempY = pos.y - 1;
                 while(tempY >= 0 && colors[tempY][pos.x] != colors[pos.y][pos.x]){
                     result.add(new Point(pos.x, tempY));
+                    if(colors[tempY][pos.x] != 0){
+                        break;
+                    }
                     tempY--;
                 }
                 //West tests
                 tempX = pos.x - 1;
                 while(tempX >= 0 && colors[pos.y][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, pos.y));
+                    if(colors[pos.y][tempX] != 0){
+                        break;
+                    }
                     tempX--;
                 }
                 //East tests
                 tempX = pos.x + 1;
                 while(tempX < 8 && colors[pos.y][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, pos.y));
+                    if(colors[pos.y][tempX] != 0){
+                        break;
+                    }
                     tempX++;
                 }
                 //Q1 tests
@@ -209,6 +245,9 @@ public class SimpleChess {
                 tempX = pos.x + 1;
                 while(tempY >= 0 && tempX < 8 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY--;
                     tempX++;
                 }
@@ -217,6 +256,9 @@ public class SimpleChess {
                 tempX = pos.x - 1;
                 while(tempY >= 0 && tempX >= 0 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY--;
                     tempX--;
                 }
@@ -225,6 +267,9 @@ public class SimpleChess {
                 tempX = pos.x - 1;
                 while(tempY < 8 && tempX >= 0 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY++;
                     tempX--;
                 }
@@ -233,6 +278,9 @@ public class SimpleChess {
                 tempX = pos.x + 1;
                 while(tempY < 8 && tempX < 8 && colors[tempY][tempX] != colors[pos.y][pos.x]){
                     result.add(new Point(tempX, tempY));
+                    if(colors[tempY][tempX] != 0){
+                        break;
+                    }
                     tempY++;
                     tempX++;
                 }
@@ -289,5 +337,14 @@ public class SimpleChess {
             end[i] = result.get(i);
         }
         return end;
+    }
+
+    public boolean isValidMove(char[][] board, int[][] colors, Point piece, Point pos){
+        for(Point p: findMoves(board, colors, piece)){
+            if(pos.equals(p)){
+                return true;
+            }
+        }
+        return false;
     }
 }
