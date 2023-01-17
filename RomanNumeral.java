@@ -38,7 +38,7 @@ public class RomanNumeral implements Comparable{
      * @throws IllegalArgumentException Thrown if string represents a value less than 1 or greater than 4000
      */
     public RomanNumeral(String v)throws NumberFormatException, IllegalArgumentException{
-        value = toInt(v); 
+        this(toInt(v));
     }
 
     /**
