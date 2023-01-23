@@ -59,7 +59,10 @@ public class RomanNumeral implements Comparable{
      * @throws NumberFormatException Thrown if the value given isn't a properly formatted roman numeral
      * @throws IllegalArgumentException Thrown if string represents a value less than 1 or greater than 4000
      */
-    public void setValue(String v)throws NumberFormatException, IllegalArgumentException{
+    public RomanNumeral(String v)throws NumberFormatException, IllegalArgumentException{
+        if(toInt(v) < 1 || toInt(v) > 4000){
+            throw new IllegalArgumentException("Can only store values between 1 and 4000");
+        }
         value = toInt(v);
     }
 
