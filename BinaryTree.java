@@ -8,6 +8,23 @@ public class BinaryTree<T>{
     private Node<T> root = null;
 
     /**
+     * Default constructor, creates an empty binary tree
+     */
+    public BinaryTree(){
+
+    }
+
+    /**
+     * Creates a binary tree with the provided nodes
+     * @param nodes A set of nodes to add to the binary tree
+     */
+    public BinaryTree(Node<T>...nodes){
+        for(Node<T> n: nodes){
+            add(n.getData());
+        }
+    }
+
+    /**
      * Method to add an item to the tree
      * @param value The value to add the the tree
      */
