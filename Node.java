@@ -2,16 +2,16 @@
  * A class that holds a specific node of a binary tree
  * @see BinaryTree
  */
-public class Node implements Comparable<Node>{
-    private String data;
-    public Node left = null;
-    public Node right = null;
+public class Node<T> implements Comparable<Node<T>>{
+    private T data;
+    public Node<T> left = null;
+    public Node<T> right = null;
 
     /**
      * Constructor that sets the stored data
      * @param s The data to store in the node
      */
-    public Node(String s){
+    public Node(T s){
         data = s;
     }
 
@@ -19,7 +19,7 @@ public class Node implements Comparable<Node>{
      * Accessor for the instance variable data
      * @return The value stored in 'data'
      */
-    public String getData(){
+    public T getData(){
         return data;
     }
 
@@ -29,25 +29,8 @@ public class Node implements Comparable<Node>{
      * @return An integer, 1 if n is greater, 0 if n is equal, -1 if n is lesser
      */
     @Override
-    public int compareTo(Node n){
-        int l1 = data.length();
-        int l2 = n.getData().length();
-        int lmin = Math.min(l1, l2);
-
-        for(int i = 0; i < lmin; i++){
-            int char1 = (int) data.charAt(i);
-            int char2 = (int) n.getData().charAt(i);
-
-            if(char1 != char2){
-                return char1 - char2;
-            }
-        }
-
-        if(l1 != l2){
-            return l1 - l2;
-        }
-
-        return 0;
+    public int compareTo(Node<T> n){
+        return getData().hashCode() - getData().hashCode();
     }
 
     /**
@@ -57,6 +40,6 @@ public class Node implements Comparable<Node>{
      */
     @Override
     public boolean equals(Object o){
-        return data.equals(((Node) o).getData());
+        return data.equals(((Node<T>) o).getData());
     }
 }
