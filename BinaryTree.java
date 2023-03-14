@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Class that represents a full binary tree
@@ -146,7 +147,7 @@ public class BinaryTree<T>{
             }
         }
         
-        return (Node<T>[]) result.toArray();
+        return Arrays.copyOf(result.toArray(), result.size(), Node[].class);
     }
 
     /**
@@ -179,7 +180,7 @@ public class BinaryTree<T>{
             }
         }
         
-        return (Node<T>[]) result.toArray();
+        return Arrays.copyOf(result.toArray(), result.size(), Node[].class);
     }
 
     /**
@@ -212,6 +213,6 @@ public class BinaryTree<T>{
         }
         result.add(n);
        
-        return (Node<T>[]) result.toArray();
+        return Arrays.copyOf(result.toArray(), result.size(), Node[].class);
     }
 }
