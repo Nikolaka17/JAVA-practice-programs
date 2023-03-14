@@ -19,7 +19,7 @@ public class BinaryTree<T>{
      * Creates a binary tree with the provided nodes
      * @param nodes A set of nodes to add to the binary tree
      */
-    public BinaryTree(Node<T>...nodes){
+    public BinaryTree(Node<T>[] nodes){
         for(Node<T> n: nodes){
             add(n.getData());
         }
@@ -29,7 +29,7 @@ public class BinaryTree<T>{
      * Creates a binary tree with the provided items
      * @param items The items to add to the tree
      */
-    public BinaryTree(T...items){
+    public BinaryTree(T[] items){
         for(T item: items){
             add(item);
         }
