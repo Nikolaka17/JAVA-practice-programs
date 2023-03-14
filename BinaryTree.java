@@ -169,13 +169,13 @@ public class BinaryTree<T>{
         }
         ArrayList<Node<T>> result = new ArrayList<Node<T>>();
         if(n.left != null){
-            for(Node<T> i: preorder(n.left)){
+            for(Node<T> i: inorder(n.left)){
                 result.add(i);
             }
         }
         result.add(n);
         if(n.right != null){
-            for(Node<T> i: preorder(n.right)){
+            for(Node<T> i: inorder(n.right)){
                 result.add(i);
             }
         }
@@ -202,12 +202,12 @@ public class BinaryTree<T>{
         }
         ArrayList<Node<T>> result = new ArrayList<Node<T>>();
         if(n.left != null){
-            for(Node<T> i: preorder(n.left)){
+            for(Node<T> i: postorder(n.left)){
                 result.add(i);
             }
         }
         if(n.right != null){
-            for(Node<T> i: preorder(n.right)){
+            for(Node<T> i: postorder(n.right)){
                 result.add(i);
             }
         }
