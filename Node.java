@@ -30,7 +30,7 @@ public class Node<T> implements Comparable<Node<T>>{
      */
     @Override
     public int compareTo(Node<T> n){
-        return getData().hashCode() - getData().hashCode();
+        return getData().hashCode() - n.getData().hashCode();
     }
 
     /**
