@@ -23,7 +23,7 @@ public class TreeWindow{
 		JTextField addField = new JTextField(5);
 		JTextField searchField = new JTextField(5);
 
-        BinaryTree tree = new BinaryTree();
+        BinaryTree tree = new BinaryTree<String>();
 
         addButton.addActionListener(new ActionListener(){
             @Override
