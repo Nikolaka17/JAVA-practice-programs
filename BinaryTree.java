@@ -25,6 +25,16 @@ public class BinaryTree<T>{
     }
 
     /**
+     * Creates a binary tree with the provided items
+     * @param items The items to add to the tree
+     */
+    public BinaryTree(T...items){
+        for(T item: items){
+            add(item);
+        }
+    }
+
+    /**
      * Method to add an item to the tree
      * @param value The value to add the the tree
      */
